@@ -1,0 +1,12 @@
+{
+  "name": "dev",
+  "database": {
+    "readonly": {
+      "password": "admin"
+    },
+    "db3": {
+      "password": "admin"
+    },
+    "sync": true
+  }
+}
