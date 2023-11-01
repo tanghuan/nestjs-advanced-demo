@@ -9,6 +9,8 @@ import { User } from './entities/user.entity';
 import { Role } from './entities/role.entity';
 import { UserRepository } from './repositories/user.repository';
 import { RoleRepository } from './repositories/role.repository';
+import { UserService } from './services/user.service';
+import { RoleService } from './services/role.service';
 
 @Module({
   imports: [
@@ -72,6 +74,12 @@ import { RoleRepository } from './repositories/role.repository';
     TypeOrmModule.forFeature([Role], 'db3'),
   ],
   controllers: [AppController],
-  providers: [AppService, UserRepository, RoleRepository],
+  providers: [
+    UserRepository,
+    RoleRepository,
+    AppService,
+    UserService,
+    RoleService,
+  ],
 })
 export class AppModule {}
