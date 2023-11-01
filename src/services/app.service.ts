@@ -22,22 +22,6 @@ export class AppService {
     const name = this.configService.get<string>('name');
     console.log({ name });
 
-    const user = new User();
-    const now = Date.now();
-    user.username = `User${now}`;
-    user.email = `user${now}@gmail.com`;
-    await this.userRepository.save(user);
-
-    const users = await this.userRepository.find({
-      take: 3,
-    });
-    console.log({ users });
-
-    const roles = await this.roleRepository.find({
-      take: 3,
-    });
-    console.log({ roles });
-
     return 'Hello World!';
   }
 }
