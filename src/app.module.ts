@@ -7,6 +7,8 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { User } from './entities/user.entity';
 import { Role } from './entities/role.entity';
+import { UserRepository } from './repositories/user.repository';
+import { RoleRepository } from './repositories/role.repository';
 
 @Module({
   imports: [
@@ -70,6 +72,6 @@ import { Role } from './entities/role.entity';
     TypeOrmModule.forFeature([Role], 'db3'),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, UserRepository, RoleRepository],
 })
 export class AppModule {}
