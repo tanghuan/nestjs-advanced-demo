@@ -1,7 +1,8 @@
-import { Repository } from 'typeorm';
+import { BaseEntity } from 'src/entities/base.entity';
+import { BaseRepository } from 'src/repositories/base.repository';
 
-export abstract class BaseService<Entity> {
-  constructor(private readonly repository: Repository<Entity>) {}
+export abstract class BaseService<Entity extends BaseEntity> {
+  constructor(private repository: BaseRepository<Entity>) {}
 
   async findTopN(take: number): Promise<Entity[]> {
     return this.repository.find({

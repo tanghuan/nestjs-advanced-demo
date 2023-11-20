@@ -1,10 +1,14 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 
-export class UserRepository {
+import { BaseRepository } from './base.repository';
+import { User } from 'src/entities/user.entity';
+
+export class UserRepository extends BaseRepository<User> {
   constructor(
     @InjectRepository(User)
-    private readonly repository: Repository<User>,
-  ) {}
+    private readonly userRepository: Repository<User>,
+  ) {
+    super(userRepository);
+  }
 }
