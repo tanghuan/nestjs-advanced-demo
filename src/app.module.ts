@@ -11,6 +11,8 @@ import { UserRepository } from './repositories/user.repository';
 import { RoleRepository } from './repositories/role.repository';
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
+import { Log } from './entities/log.entity';
+import { LogService } from './services/log.service';
 
 @Module({
   imports: [
@@ -48,7 +50,7 @@ import { RoleService } from './services/role.service';
               },
             ],
           },
-          entities: [User],
+          entities: [User, Log],
           logging: true,
           synchronize: configService.get<boolean>('database.sync'),
         };
@@ -70,7 +72,7 @@ import { RoleService } from './services/role.service';
         synchronize: configService.get<boolean>('database.sync'),
       }),
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Log]),
     TypeOrmModule.forFeature([Role], 'db3'),
   ],
   controllers: [AppController],
@@ -80,6 +82,7 @@ import { RoleService } from './services/role.service';
     AppService,
     UserService,
     RoleService,
+    LogService,
   ],
 })
 export class AppModule {}

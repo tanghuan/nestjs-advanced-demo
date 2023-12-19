@@ -8,6 +8,9 @@ CREATE SCHEMA `db3` DEFAULT CHARACTER SET utf8mb4;
 -- db1, db2
 CREATE TABLE `users` (
     `id` VARCHAR(36) NOT NULL,
+    `createdAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updatedAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    `deletedAt` timestamp(6) NULL DEFAULT NULL,
     `username` VARCHAR(255) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
     UNIQUE INDEX `IDX_78a916df40e02a9deb1c4b75ed` (`username`),
@@ -15,9 +18,21 @@ CREATE TABLE `users` (
     PRIMARY KEY (`id`)
 )  ENGINE=INNODB;
 
+CREATE TABLE `logs`  (
+  `id` varchar(36) NOT NULL,
+  `createdAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `updatedAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `deletedAt` timestamp(6) NULL DEFAULT NULL,
+  `content` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB;
+
 -- db3
 CREATE TABLE `roles` (
     `id` VARCHAR(36) NOT NULL,
+    `createdAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+    `updatedAt` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+    `deletedAt` timestamp(6) NULL DEFAULT NULL,
     `name` VARCHAR(255) NOT NULL,
     `enabled` TINYINT NOT NULL DEFAULT 1,
     UNIQUE INDEX `IDX_ae4578dcaed5adff96595e6166` (`name`),
